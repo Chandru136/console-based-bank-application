@@ -44,4 +44,9 @@ public class UserRepository {
         }
     }
 
+    public boolean addNewCustomer(String username, String password, String contact) {
+        User user = new User(username, password, contact, "user", 500.0);
+        return users.add(user);
+    }
+
 }
