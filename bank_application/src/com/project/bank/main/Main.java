@@ -11,10 +11,9 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     static Main main = new Main();
+    static UserService userService = new UserService();
 
     public static void main(String[] args) {
-
-        UserService userService = new UserService();
 
         while (true) {
             System.out.println("Enter User Name ");
@@ -67,9 +66,33 @@ public class Main {
 
         System.out.println("Enter Contact Number");
         String contact = scanner.next();
+
+        boolean result = userService.addNewCustomer(username, password, contact);
+
+        if (result) {
+            System.out.println("Customer account is created.");
+        } else {
+            System.out.println("Customer account creation failed...");
+        }
     }
 
     private void initCustomer() {
-        System.out.println("You are a Customer");
+        boolean flag = true;
+
+        while (flag) {
+            System.out.println("1. Logout/ Exit");
+
+            int selectedOption = scanner.nextInt();
+
+            switch (selectedOption) {
+                case 1:
+                    flag = false;
+                    System.out.println("You have Successfully logged out...");
+                    break;
+                default:
+                    System.out.println("Wrong Choice");
+            }
+        }
+
     }
 }
