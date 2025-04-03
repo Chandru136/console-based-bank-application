@@ -16,4 +16,8 @@ public class UserService {
         return userRepository.login(userName, password);
     }
 
+    public boolean addNewCustomer(String username, String password, String contact) {
+        return userRepository.addNewCustomer(username, password, contact);
+    }
+
 }
