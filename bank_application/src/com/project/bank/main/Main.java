@@ -27,7 +27,7 @@ public class Main {
             if (user != null && user.getRole().equals("admin")) {
                 main.initAdmin();
             } else if (user != null && user.getRole().equals("user")) {
-                main.initCustomer();
+                main.initCustomer(user);
             } else {
                 System.out.println("Login failed");
             }
@@ -76,11 +76,12 @@ public class Main {
         }
     }
 
-    private void initCustomer() {
+    private void initCustomer(User user) {
         boolean flag = true;
 
         while (flag) {
             System.out.println("1. Logout/ Exit");
+            System.out.println("2. Check Bank Balance");
 
             int selectedOption = scanner.nextInt();
 
@@ -89,10 +90,21 @@ public class Main {
                     flag = false;
                     System.out.println("You have Successfully logged out...");
                     break;
+                case 2:
+                    Double balance = main.checkBalance(user.getUserName());
+                    if (balance != null) {
+                        System.out.println("The Balance is: " + balance);
+                    } else {
+                        System.out.println("Invalid Login Credentials");
+                    }
                 default:
                     System.out.println("Wrong Choice");
             }
         }
-
     }
+
+    private Double checkBalance(String userId) {
+        return userService.checkBalance(userId);
+    }
+
 }
