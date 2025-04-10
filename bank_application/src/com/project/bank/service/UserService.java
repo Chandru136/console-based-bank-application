@@ -20,4 +20,8 @@ public class UserService {
         return userRepository.addNewCustomer(username, password, contact);
     }
 
+    public Double checkBalance(String userId) {
+        return userRepository.checkBalance(userId);
+    }
+
 }
